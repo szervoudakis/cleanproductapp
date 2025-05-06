@@ -1,27 +1,26 @@
 using CleanProductApp.Domain.Entities;
 using CleanProductApp.Application.Interfaces;
 using CleanProductApp.Infrastructure;
-using CleanProductApp.Infrastrucure;
+using Microsoft.EntityFrameworkCore;
 
 namespace CleanProductApp.Infrastructure;
 
 public class ProductRepository : IProductRepository
 {
-   // private readonly AppDbContext _context;
     private readonly AppDbContext _context;
+   
     public ProductRepository(AppDbContext context)
     {
         _context = context;
     }
-
-    public void Add(Product product)
+    public async Task AddAsync(Product product)
     {
-        _context.Products.Add(product);
-        _context.SaveChanges();
+        await _context.Products.AddAsync(product);
+        await _context.SaveChangesAsync();
     }
 
-    public IEnumerable<Product> GetAll()
+    public async Task<IEnumerable<Product>> GetAllAsync()
     {
-        return _context.Products.ToList();
+        return await _context.Products.ToListAsync();
     }
 }

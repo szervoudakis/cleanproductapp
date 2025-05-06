@@ -4,6 +4,6 @@ namespace CleanProductApp.Application.Interfaces;
 
 public interface IProductRepository
 {
-    void Add(Product product);
-    IEnumerable<Product> GetAll();
+    Task AddAsync(Product product);
+    Task<IEnumerable<Product>> GetAllAsync();
 }

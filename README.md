@@ -4,7 +4,6 @@
 
 ## ✨ Features
 
-- Add products to a SQL Server database
 - Retrieve all products via REST API
 - Implements CQRS (Command Query Responsibility Segregation)
 - Fully separated architecture (Domain, Application, Infrastructure, WebAPI)

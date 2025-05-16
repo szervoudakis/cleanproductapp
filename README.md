@@ -15,27 +15,25 @@
 
 ## 📁 Project Structure
 
-CleanProductApp/
-│
-├── Application/
-│ ├── Commands/ // AddProductCommand
-│ ├── Queries/ // GetAllProductsQuery
-│ ├── Handlers/ // Handlers for CQRS
-│ ├── Interfaces/ // IProductRepository
-│
-├── Domain/
-│ └── Entities/ // Product.cs
-│
-├── Infrastructure/
-│ ├── Repositories/ // ProductRepository
-│ └── AppDbContext.cs
-│
-├── WebAPI/
-│ └── Controllers/ // ProductsController
-│
-├── Program.cs
-└── appsettings.json 
+# CleanProductApp - Directory Structure
 
+```
+CleanProductApp/
+├── Application/
+│   ├── Commands/          # AddProductCommand
+│   ├── Queries/          # GetAllProductsQuery
+│   ├── Handlers/         # Handlers for CQRS
+│   └── Interfaces/       # IProductRepository
+├── Domain/
+│   └── Entities/         # Product.cs
+├── Infrastructure/
+│   ├── Repositories/     # ProductRepository
+│   └── AppDbContext.cs
+├── WebAPI/
+│   └── Controllers/      # ProductsController
+├── Program.cs
+└── appsettings.json
+```
 ## 🛠️ Technologies Used
 
 - **.NET 8**

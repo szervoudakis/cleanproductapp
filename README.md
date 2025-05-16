@@ -1,6 +1,6 @@
 # CleanProductApp
 
-**CleanProductApp** is a demo .NET project following **Clean Architecture** principles, utilizing **Entity Framework Core**, **CQRS with MediatR**, and an **ASP.NET Core Web API**.
+**CleanProductApp** is a demo .NET project following **Clean Architecture** principles, utilizing **Entity Framework Core**, **CQRS with MediatR**, and an **ASP.NET Core Web API**.The application manages products by allowing them to be added and retrieved from a SQL Server database.
 
 ## ✨ Features
 
@@ -12,7 +12,8 @@
 
 ---
 
-## 🗂️ Project Structure
+
+## 📁 Project Structure
 
 CleanProductApp/
 │
@@ -33,7 +34,7 @@ CleanProductApp/
 │ └── Controllers/ // ProductsController
 │
 ├── Program.cs
-└── appsettings.json
+└── appsettings.json 
 
 ## 🛠️ Technologies Used
 

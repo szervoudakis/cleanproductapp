@@ -15,12 +15,12 @@ public class ProductRepository : IProductRepository
     }
     public async Task AddAsync(Product product)
     {
-        await _context.Products.AddAsync(product);
-        await _context.SaveChangesAsync();
-    }
+        await _context.Products.AddAsync(product); // Adds the product to the DbSet
+        await _context.SaveChangesAsync();   // Saves changes to the database
+    } 
 
     public async Task<IEnumerable<Product>> GetAllAsync()
     {
-        return await _context.Products.ToListAsync();
+        return await _context.Products.ToListAsync(); // Fetches all products as a list
     }
 }

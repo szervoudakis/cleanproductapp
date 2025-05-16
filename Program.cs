@@ -1,46 +1,38 @@
-﻿using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using CleanProductApp.Infrastructure;
 using CleanProductApp.Domain.Entities;
 using CleanProductApp.Application.Interfaces;
+using MediatR;
+using CleanProductApp.Application.Handlers;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 
 // Build and configure the Host with dependency injection and configuration services
-var host = Host.CreateDefaultBuilder(args)
-    .ConfigureAppConfiguration((context, config) =>
-    {
-        // Load configuration from appsettings.json
-        config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-    })
-    .ConfigureServices((context, services) =>
-    {
-        // Retrieve connection string from configuration
-        var connectionString = context.Configuration.GetConnectionString("DefaultConnection");
+var builder = WebApplication.CreateBuilder(args);
+// Load configuration from appsettings.json
+builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
-        // Register the DbContext with SQL Server provider
-        services.AddDbContext<AppDbContext>(options =>
-            options.UseSqlServer(connectionString));
+// Add services to the container.
+builder.Services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies()); // get all assemblies
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
-        // Register the repository as a scoped service
-        services.AddScoped<IProductRepository, ProductRepository>();
-    })
-    .Build();
+// Retrieve connection string from configuration
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-// Create a scope for resolving scoped services
-using var scope = host.Services.CreateScope();
-var services = scope.ServiceProvider;
+// Register the DbContext with SQL Server provider
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(connectionString));
 
-// Get the repository from the service provider
-var repo = services.GetRequiredService<IProductRepository>();
+// Add controllers to handle HTTP requests
+builder.Services.AddControllers();
 
-// Optional: Add a new product to the database
-// await repo.AddAsync(new Product { Name = "Laptop", Price = 999.99m });
+var app = builder.Build();
 
-// Retrieve all products asynchronously
-var products = await repo.GetAllAsync();
+// Configure the HTTP request pipeline.
+app.MapControllers();  // Map the API controllers
 
-// Print all products to the console
-foreach (var product in products){
-    Console.WriteLine($"Id: {product.Id}, Name: {product.Name}, Price: {product.Price}");
-}
+app.Run();  // Start the application
+

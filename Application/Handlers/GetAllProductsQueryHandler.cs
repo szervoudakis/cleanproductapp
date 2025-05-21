@@ -6,14 +6,16 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-//this handler implements the MediatR pattern
-//it takes one GetAllProductsQuery and returns one list with products
+/// <summary>
+/// Handler responsible for processing the GetAllProductsQuery.
+/// Implements MediatR's IRequestHandler interface and returns a list of Product entities.
+/// </summary>
 namespace CleanProductApp.Application.Handlers
 {
     public class GetAllProductsQueryHandler : IRequestHandler<GetAllProductsQuery, IEnumerable<Product>>
     {
         private readonly IProductRepository _productRepository;
-
+         /// Constructor that injects the product repository via dependency injection. 
         public GetAllProductsQueryHandler(IProductRepository productRepository)
         {
             _productRepository = productRepository;

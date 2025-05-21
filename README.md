@@ -41,3 +41,12 @@ CleanProductApp/
 - **MediatR**
 - **ASP.NET Core Web API**
 - **SQL Server**
+
+## 🚀 Upcoming Features & Improvements
+
+- 🔐 **JWT Authentication** — Secure the API with token-based authentication.
+- 🗑️ **Delete Product Endpoint** — Allow deletion of products via HTTP DELETE requests.
+- ♻️ **Update Product Endpoint** — Enable editing/updating product data.
+- 🧪 **Unit & Integration Tests** — Improve test coverage for handlers and controllers.
+- 📦 **Pagination & Filtering** — Add support for paginated and filtered product lists.
+- 📘 **Swagger/OpenAPI Documentation** — Auto-generate interactive API docs.

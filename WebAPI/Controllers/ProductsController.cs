@@ -1,9 +1,10 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using CleanProductApp.Application.Queries;
+using CleanProductApp.Application.Commands;
 
 namespace CleanProductApp.WebApi.Controllers
-{   
+{
     [ApiController]
     [Route("api/[controller]")]  //defines the base route for this controller
     public class ProductsController : ControllerBase
@@ -20,6 +21,16 @@ namespace CleanProductApp.WebApi.Controllers
         {
             var products = await _mediator.Send(new GetAllProductsQuery());
             return Ok(products);
+        }
+
+        [HttpPost]  //defines an HTTP POST endpoint to add product in db
+        public async Task<IActionResult> AddProduct([FromBody] AddProductCommand command)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var productId = await _mediator.Send(command);
+            return CreatedAtAction(nameof(GetAllProducts), new { id = productId }, new { id = productId });    
         }
     }
 }

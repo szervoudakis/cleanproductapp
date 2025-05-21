@@ -5,6 +5,7 @@
 ## ✨ Features
 
 - Retrieve all products via REST API
+- Add new Product
 - Implements CQRS (Command Query Responsibility Segregation)
 - Fully separated architecture (Domain, Application, Infrastructure, WebAPI)
 - Uses `MediatR` for decoupled request/response handling

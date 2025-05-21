@@ -16,7 +16,7 @@ namespace CleanProductApp.WebApi.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet]                  //defines an HTTP GET endpoint to retrieve all products
+        [HttpGet]//defines an HTTP GET endpoint to retrieve all products
         public async Task<IActionResult> GetAllProducts()
         {
             var products = await _mediator.Send(new GetAllProductsQuery());

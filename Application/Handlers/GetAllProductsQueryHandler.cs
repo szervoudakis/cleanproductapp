@@ -2,28 +2,38 @@ using MediatR;
 using CleanProductApp.Application.Interfaces;
 using CleanProductApp.Domain.Entities;
 using CleanProductApp.Application.Queries;
+using CleanProductApp.Application.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-/// <summary>
-/// Handler responsible for processing the GetAllProductsQuery.
-/// Implements MediatR's IRequestHandler interface and returns a list of Product entities.
-/// </summary>
 namespace CleanProductApp.Application.Handlers
 {
-    public class GetAllProductsQueryHandler : IRequestHandler<GetAllProductsQuery, IEnumerable<Product>>
+    /// <summary>
+    /// Handler responsible for processing the GetAllProductsQuery with pagination.
+    /// Returns a PaginatedResult<Product> containing the requested page of products.
+    /// </summary>
+    public class GetAllProductsQueryHandler : IRequestHandler<GetAllProductsQuery, PaginatedResult<Product>>
     {
         private readonly IProductRepository _productRepository;
-         /// Constructor that injects the product repository via dependency injection. 
+
         public GetAllProductsQueryHandler(IProductRepository productRepository)
         {
             _productRepository = productRepository;
         }
 
-        public async Task<IEnumerable<Product>> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
+        public async Task<PaginatedResult<Product>> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
         {
-            return await _productRepository.GetAllAsync();
+            var allProducts = await _productRepository.GetAllAsync();
+
+            var totalCount = allProducts.Count();
+            var pagedItems = allProducts
+                .Skip((request.PageNumber - 1) * request.PageSize) //skip the items from previous pages  
+                .Take(request.PageSize)  //take only the items for the current page
+                .ToList();//convert the result to a list
+
+            return new PaginatedResult<Product>(pagedItems, totalCount, request.PageNumber, request.PageSize);
         }
     }
 }

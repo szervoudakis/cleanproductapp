@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using CleanProductApp.Application.Queries;
 using CleanProductApp.Application.Commands;
+using CleanProductApp.Application.Models;
 
 namespace CleanProductApp.WebApi.Controllers
 {
@@ -17,9 +18,11 @@ namespace CleanProductApp.WebApi.Controllers
         }
 
         [HttpGet]//defines an HTTP GET endpoint to retrieve all products
-        public async Task<IActionResult> GetAllProducts()
+        public async Task<IActionResult> GetAllProducts([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
-            var products = await _mediator.Send(new GetAllProductsQuery());
+            var query = new GetAllProductsQuery(pageNumber, pageSize);
+
+            var products = await _mediator.Send(query);
             return Ok(products);
         }
 

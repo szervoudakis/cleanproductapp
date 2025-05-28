@@ -4,7 +4,7 @@
 
 ## ✨ Features
 
-- Retrieve all products via REST API
+- Retrieve all products via REST API (using Pagination)
 - Add new Product
 - Implements CQRS (Command Query Responsibility Segregation)
 - Fully separated architecture (Domain, Application, Infrastructure, WebAPI)
@@ -48,5 +48,4 @@ CleanProductApp/
 - 🗑️ **Delete Product Endpoint** — Allow deletion of products via HTTP DELETE requests.
 - ♻️ **Update Product Endpoint** — Enable editing/updating product data.
 - 🧪 **Unit & Integration Tests** — Improve test coverage for handlers and controllers.
-- 📦 **Pagination & Filtering** — Add support for paginated and filtered product lists.
 - 📘 **Swagger/OpenAPI Documentation** — Auto-generate interactive API docs.

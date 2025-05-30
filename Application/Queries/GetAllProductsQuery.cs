@@ -9,7 +9,7 @@ namespace CleanProductApp.Application.Queries
     {
         public int PageNumber { get; }
         public int PageSize { get; }
-
+        //query to retrieve a paginated list of Product data  (MediatR)
         public GetAllProductsQuery(int pageNumber = 1, int pageSize = 10)
         {
             PageNumber = pageNumber;

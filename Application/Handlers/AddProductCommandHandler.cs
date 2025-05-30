@@ -23,7 +23,7 @@ namespace CleanProductApp.Application.Handlers
                 Name = request.Name,
                 Price = request.Price
             };
-
+             //persist the new product entity to the database async
             await _productRepository.AddAsync(product);
             return product.Id; 
         }

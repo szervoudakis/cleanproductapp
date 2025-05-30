@@ -25,7 +25,7 @@ namespace CleanProductApp.Application.Handlers
 
         public async Task<PaginatedResult<Product>> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
         {
-            var allProducts = await _productRepository.GetAllAsync();
+            var allProducts = await _productRepository.GetAllAsync(); //get all products from repository async
 
             var totalCount = allProducts.Count();
             var pagedItems = allProducts

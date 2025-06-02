@@ -72,6 +72,7 @@ namespace CleanProductApp.WebApi.Controllers
                 if (IsValidUserCredentials(login.Username, login.Password))
                 {
                     var tokenString = GenerateJwtToken(login.Username);
+                   
                     return Ok(new { Token = tokenString });
                 }
                 else
@@ -101,6 +102,9 @@ namespace CleanProductApp.WebApi.Controllers
         private string GenerateJwtToken(string username)
         {
             //create a symmetric security token from the JWT secret key defined in appsettings.json
+            Console.WriteLine(_configuration["Jwt:Key"]);
+            Console.WriteLine(_configuration["Jwt:Issuer"]);
+            Console.WriteLine(_configuration["Jwt:Audience"]);
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
             //Create signing credentials using the key and HMAC-SHA256 algorithm
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

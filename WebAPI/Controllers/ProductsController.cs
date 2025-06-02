@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using CleanProductApp.Application.Queries;
 using CleanProductApp.Application.Commands;
 using CleanProductApp.Application.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CleanProductApp.WebApi.Controllers
 {
@@ -26,6 +27,7 @@ namespace CleanProductApp.WebApi.Controllers
             return Ok(products);
         }
 
+        [Authorize]
         [HttpPost]  //defines an HTTP POST endpoint to add product in db
         public async Task<IActionResult> AddProduct([FromBody] AddProductCommand command)
         {

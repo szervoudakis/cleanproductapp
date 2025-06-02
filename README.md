@@ -9,6 +9,7 @@
 - Implements CQRS (Command Query Responsibility Segregation)
 - Fully separated architecture (Domain, Application, Infrastructure, WebAPI)
 - Uses `MediatR` for decoupled request/response handling
+- Secure private endpoints using authentication middleware (JWT Bearer authentication)
 
 ---
 
@@ -44,7 +45,6 @@ CleanProductApp/
 
 ## 🚀 Upcoming Features & Improvements
 
-- 🔐 **JWT Authentication** — Secure the API with token-based authentication.
 - 🗑️ **Delete Product Endpoint** — Allow deletion of products via HTTP DELETE requests.
 - ♻️ **Update Product Endpoint** — Enable editing/updating product data.
 - 🧪 **Unit & Integration Tests** — Improve test coverage for handlers and controllers.

@@ -8,7 +8,7 @@ namespace CleanProductApp.Infrastructure;
 public class ProductRepository : IProductRepository
 {
     private readonly AppDbContext _context;
-   
+
     public ProductRepository(AppDbContext context)
     {
         _context = context;
@@ -17,10 +17,21 @@ public class ProductRepository : IProductRepository
     {
         await _context.Products.AddAsync(product); // Adds the product to the DbSet
         await _context.SaveChangesAsync();   // Saves changes to the database
-    } 
+    }
 
     public async Task<IEnumerable<Product>> GetAllAsync()
     {
         return await _context.Products.ToListAsync(); // Fetches all products as a list
+    }
+
+    public async Task<Product?> GetByIdAsync(int id) //retrieve specific product by id
+    {
+        return await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
+    }
+
+    public async Task UpdateAsync(Product product)
+    {
+        _context.Products.Update(product);
+        await _context.SaveChangesAsync();
     }
 }

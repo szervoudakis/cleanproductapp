@@ -108,12 +108,12 @@ namespace CleanProductApp.WebApi.Controllers
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
             //Create signing credentials using the key and HMAC-SHA256 algorithm
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-                
             var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.Sub, username),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             };
+            
             // Create the JWT with issuer, audience, claims, expiration time, and signing credentials
             var token = new JwtSecurityToken(
                 issuer: _configuration["Jwt:Issuer"],

@@ -35,8 +35,9 @@ namespace CleanProductApp.WebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            var productId = await _mediator.Send(command);
-            return CreatedAtAction(nameof(GetAllProducts), new { id = productId }, new { id = productId });
+            var createdProduct = await _mediator.Send(command);
+            //return json with id,name,price of created product
+            return CreatedAtAction(nameof(GetProductById), new { id = createdProduct.Id }, createdProduct);
         }
 
         [HttpGet("{id}")]    //defines http get endpoint to retrieve specific product by id

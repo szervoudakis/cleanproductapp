@@ -4,7 +4,7 @@ namespace CleanProductApp.Application.Interfaces;
 // Interface for product repository with asynchronous methods for adding and retrieving products
 public interface IProductRepository
 {
-    Task AddAsync(Product product);
+    Task<Product> AddAsync(Product product);
     Task<IEnumerable<Product>> GetAllAsync();
     Task<Product?> GetByIdAsync(int id);
 

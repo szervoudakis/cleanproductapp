@@ -7,7 +7,7 @@ using CleanProductApp.Application.Commands;
 
 namespace CleanProductApp.Application.Handlers
 {
-     public class AddProductCommandHandler : IRequestHandler<AddProductCommand, int>
+     public class AddProductCommandHandler : IRequestHandler<AddProductCommand , Product>
     {
         private readonly IProductRepository _productRepository;
 
@@ -16,7 +16,7 @@ namespace CleanProductApp.Application.Handlers
             _productRepository = productRepository;
         }
 
-        public async Task<int> Handle(AddProductCommand request, CancellationToken cancellationToken)
+        public async Task<Product> Handle(AddProductCommand request, CancellationToken cancellationToken)
         {
             var product = new Product
             {
@@ -25,7 +25,8 @@ namespace CleanProductApp.Application.Handlers
             };
              //persist the new product entity to the database async
             await _productRepository.AddAsync(product);
-            return product.Id; 
+
+            return product; 
         }
     }
 }

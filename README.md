@@ -22,10 +22,11 @@
 ```
 CleanProductApp/
 ├── Application/
-│   ├── Commands/          # AddProductCommand
+│   ├── Commands/         # AddProductCommand
 │   ├── Queries/          # GetAllProductsQuery
 │   ├── Handlers/         # Handlers for CQRS
 │   └── Interfaces/       # IProductRepository
+    └── DTOs/             # object for Success/Failure messages 
 ├── Domain/
 │   └── Entities/         # Product.cs
 ├── Infrastructure/

@@ -57,11 +57,17 @@ namespace CleanProductApp.WebApi.Controllers
         {
             command.Id = id; //we want the id to pass from route
             var result = await _mediator.Send(command);
-            if (!result)
-            {
-                return NotFound();
-            }
-            return NoContent();
+
+            return result ? NoContent() : NotFound();
+        }
+
+        [Authorize]
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await _mediator.Send(new DeleteProductCommand(id));
+
+            return result.IsSuccess ? Ok(result) : NotFound(result);
         }
     }
 }

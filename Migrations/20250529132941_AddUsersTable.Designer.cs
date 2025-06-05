@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace FirstProject.Migrations
+namespace CleanProductApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     [Migration("20250529132941_AddUsersTable")]

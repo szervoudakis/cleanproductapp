@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace FirstProject.Migrations
+namespace CleanProductApp.Migrations
 {
     /// <inheritdoc />
     public partial class AddUsersTable : Migration

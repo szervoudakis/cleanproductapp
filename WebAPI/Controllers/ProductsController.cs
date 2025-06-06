@@ -51,14 +51,14 @@ namespace CleanProductApp.WebApi.Controllers
             return Ok(product);
         }
 
-        [HttpPut("{id}")]
         [Authorize]
+        [HttpPut("{id}")]
         public async Task<IActionResult> UpdateProduct(int id, [FromBody] UpdateProductCommand command)
         {
             command.Id = id; //we want the id to pass from route
             var result = await _mediator.Send(command);
 
-            return result ? NoContent() : NotFound();
+             return result.IsSuccess ? Ok(result) : NotFound(result); 
         }
 
         [Authorize]

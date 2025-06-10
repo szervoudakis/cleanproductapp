@@ -50,3 +50,4 @@ CleanProductApp/
 ## 🚀 Upcoming Features & Improvements
 - 🧪 **Unit & Integration Tests** — Improve test coverage for handlers and controllers.
 - 📘 **Swagger/OpenAPI Documentation** — Auto-generate interactive API docs.
+- **Validation Handling** - 

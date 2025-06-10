@@ -13,6 +13,10 @@ public class ProductRepository : IProductRepository
     {
         _context = context;
     }
+    public IQueryable<Product> GetAll()
+    {
+        return _context.Products.AsQueryable();  // Επιτρέπει LINQ queries απευθείας στη βάση
+    }
     public async Task<Product> AddAsync(Product product)
     {
         await _context.Products.AddAsync(product); // Adds the product to the DbSet
